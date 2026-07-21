@@ -26,8 +26,13 @@
       width: 90%;
     }
 
+    h1 {
+      color: #006437;
+      margin-bottom: 20px;
+    }
+
     button {
-      background-color: #006437; /* Verde Palmeiras */
+      background-color: #006437;
       color: white;
       font-size: 18px;
       font-weight: bold;
@@ -42,7 +47,6 @@
       background-color: #004d2a;
     }
 
-    /* Esconde o vídeo no início */
     #area-video {
       display: none;
       margin-top: 25px;
@@ -54,11 +58,19 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
+
+    .erro {
+      color: red;
+      margin-top: 10px;
+      display: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <h1>🌴 Dia do Mundial do Palmeiras 🌴</h1>
+    
     <button id="btnRevelar" onclick="mostrarVideo()">
       Clica aqui pra ver o dia que o palmeiras ganhou o mundial
     </button>
@@ -68,6 +80,7 @@
         <source src="meu-video.mp4" type="video/mp4">
         Seu navegador não suporta a exibição deste vídeo.
       </video>
+      <p class="erro" id="erroVideo">⚠️ Erro ao carregar o vídeo. Verifique se o arquivo existe.</p>
     </div>
   </div>
 
@@ -78,6 +91,12 @@
       areaVideo.style.display = 'block';
 
       const video = document.getElementById('meuVideo');
+      
+      // Trata erro ao carregar vídeo
+      video.onerror = function() {
+        document.getElementById('erroVideo').style.display = 'block';
+      };
+      
       video.play();
     }
   </script>
