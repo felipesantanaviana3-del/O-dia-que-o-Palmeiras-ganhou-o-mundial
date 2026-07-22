@@ -107,6 +107,35 @@
       transform: scale(0.96);
     }
 
+    .btn-play:hover {
+      transform: scale(1.05);
+    }
+
+    /* Botão de Música */
+    .btn-music {
+      background-color: #ff6b6b;
+      color: white;
+      font-weight: 700;
+      border: none;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .btn-music:active {
+      transform: scale(0.96);
+    }
+
+    .btn-music:hover {
+      transform: scale(1.05);
+      background-color: #ff5252;
+    }
+
     /* Cartão da Carta */
     .letter-card {
       background: #ffffff;
@@ -151,6 +180,13 @@
       border-radius: 12px;
     }
 
+    .music-info {
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+
     .hidden {
       display: none !important;
     }
@@ -159,12 +195,22 @@
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
   </style>
 </head>
 <body>
 
   <!-- BOTÃO QUE ATIVA MÚSICA E REVELA A CARTA -->
-  <button id="startBtn" class="btn-play" onclick="openLetter()">
+  <button id="startBtn" class="btn-play pulse" onclick="openLetter()">
     🎁 Clique para abrir a carta e ouvir a música! 🎵
   </button>
 
@@ -185,11 +231,21 @@
   <!-- PLAYER DE ÁUDIO DO YOUTUBE (Oculto inicialmente) -->
   <div id="musicPlayer" class="youtube-player hidden">
     <iframe 
-      src="https://www.youtube.com/embed/ck8EQ-82VRs?autoplay=1&controls=1&modestbranding=1" 
+      id="youtubeFrame"
+      src="https://www.youtube.com/embed/ck8EQ-82VRs?controls=1&modestbranding=1" 
       title="YouTube music player" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen>
     </iframe>
+  </div>
+
+  <!-- BOTÃO PARA INICIAR A MÚSICA -->
+  <button id="musicBtn" class="btn-music hidden" onclick="playMusic()">
+    ▶️ Clique aqui para ouvir a música!
+  </button>
+
+  <div id="musicInfo" class="music-info hidden">
+    🎵 Música tocando... aproveite! 🎵
   </div>
 
   <!-- CARTA DE HOMENAGEM -->
@@ -223,9 +279,22 @@
       // Revela o player de música do YouTube
       document.getElementById('musicPlayer').classList.remove('hidden');
 
-      // Oculta o botão e revela a mensagem
+      // Revela o botão de música
+      document.getElementById('musicBtn').classList.remove('hidden');
+
+      // Oculta o botão principal e revela a mensagem
       document.getElementById('startBtn').classList.add('hidden');
       document.getElementById('letter').classList.remove('hidden');
+    }
+
+    function playMusic() {
+      // Muda o src para forçar o YouTube a tocar
+      const frame = document.getElementById('youtubeFrame');
+      frame.src = "https://www.youtube.com/embed/ck8EQ-82VRs?autoplay=1&controls=1&modestbranding=1";
+      
+      // Oculta o botão e mostra a mensagem
+      document.getElementById('musicBtn').classList.add('hidden');
+      document.getElementById('musicInfo').classList.remove('hidden');
     }
   </script>
 </body>
