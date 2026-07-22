@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Aniversário, Pai!</title>
   <style>
-    /* Estilo Geral e Fundo Azul */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,95 +12,211 @@
     }
 
     body {
-      background: linear-gradient(135deg, #1ea1ff 0%, #0d7ec8 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1ea1ff; /* Azul exato da imagem */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
-      padding: 20px;
-      overflow-x: hidden;
+      padding: 30px 15px;
     }
 
-    /* ANIMAÇÃO DE CONFETE CAINDO */
-    @keyframes confetti-fall {
-      0% {
-        transform: translateY(-10vh) rotateZ(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotateZ(360deg);
-        opacity: 0;
-      }
-    }
-
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background-color: #FFD700;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ANIMAÇÃO DO BOTÃO COM PULSO */
-    @keyframes pulse-button {
-      0% {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-      50% {
-        box-shadow: 0 4px 25px rgba(255, 215, 0, 0.5);
-      }
-      100% {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-    }
-
-    /* ANIMAÇÃO DE ENTRADA SUAVE */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ANIMAÇÃO DE BALANÇO */
-    @keyframes swing {
-      0%, 100% {
-        transform: rotate(-2deg);
-      }
-      50% {
-        transform: rotate(2deg);
-      }
-    }
-
-    /* ANIMAÇÃO DE BRILHO */
-    @keyframes shine {
-      0%, 100% {
-        opacity: 0.5;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
-    /* Container Polaroid */
+    /* Container Polaroid Principal */
     .polaroid-wrapper {
       position: relative;
-      margin-top: 20px;
-      margin-bottom: 30px;
-      animation: fadeInUp 0.8s ease-out;
+      margin: 20px 0 30px 0;
+      width: 320px;
+      max-width: 85vw;
     }
 
     .polaroid {
       background-color: #ffffff;
-      padding: 20px 20px 50px 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
-      width: 320px;
-      max
+      padding: 18px 18px 25px 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .photo-frame {
+      width: 100%;
+      height: 290px;
+      background-color: #e2e8f0;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Emojis no Rodapé do Polaroid (Bolos de Aniversário) */
+    .cake-emojis {
+      margin-top: 18px;
+      font-size: 2.2rem;
+      letter-spacing: 6px;
+      line-height: 1;
+    }
+
+    /* Emojis Canto Superior Esquerdo */
+    .emoji-top-left {
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      font-size: 3.2rem;
+      transform: rotate(-15deg);
+      user-select: none;
+      z-index: 10;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    /* Emojis Canto Inferior Direito */
+    .emoji-bottom-right {
+      position: absolute;
+      bottom: -20px;
+      right: -30px;
+      font-size: 3.2rem;
+      transform: rotate(15deg);
+      user-select: none;
+      z-index: 10;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+    }
+
+    /* Botão Bonito para Tocar Música e Mostrar a Carta */
+    .btn-play {
+      background-color: #ffffff;
+      color: #0077e6;
+      font-weight: 700;
+      border: none;
+      padding: 16px 28px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .btn-play:active {
+      transform: scale(0.96);
+    }
+
+    /* Cartão da Mensagem */
+    .letter-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 550px;
+      padding: 28px 22px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-top: 10px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .letter-card h1 {
+      color: #1ea1ff;
+      margin-bottom: 20px;
+      font-size: 1.7rem;
+      text-align: center;
+    }
+
+    .letter-card p {
+      color: #2d3748;
+      line-height: 1.65;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BOTÃO INICIAL -->
+  <button id="startBtn" class="btn-play" onclick="openLetter()">
+    🎁 Clique para abrir a carta e tocar a música! 🎵
+  </button>
+
+  <!-- ELEMENTO DE ÁUDIO -->
+  <audio id="bgMusic" loop preload="auto">
+    <!-- Substitua 'musica.mp3' pelo seu link ou nome do arquivo de áudio -->
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- POLAROID COM EMOJIS DA FOTO -->
+  <div class="polaroid-wrapper">
+    <!-- Emoji Superior Esquerdo: Festinha e Rostinho -->
+    <div class="emoji-top-left">🎉🥳</div>
+
+    <div class="polaroid">
+      <div class="photo-frame">
+        <!-- Coloque o caminho correto da foto aqui (ex: foto.jpg) -->
+        <img src="foto.jpg" alt="Foto com o pai" onerror="this.style.display='none'; this.parentElement.innerText='📸 Coloque sua foto aqui'; this.parentElement.style.color='#666';">
+      </div>
+      
+      <!-- Emojis de Bolo embaixo da foto -->
+      <div class="cake-emojis">🎂🎂</div>
+    </div>
+
+    <!-- Emoji Inferior Direito: Rostinho e Festinha -->
+    <div class="emoji-bottom-right">🥳🎉</div>
+  </div>
+
+  <!-- CARTA DE ANIVERSÁRIO -->
+  <div id="letter" class="letter-card hidden">
+    <h1>Feliz aniversário, pai! 🎉🎂❤️</h1>
+    
+    <p>Hoje é um dia muito especial, porque é o dia de comemorar a vida de uma das pessoas mais importantes para mim. Quero aproveitar essa data para te desejar tudo de melhor que existe: muita saúde, paz, felicidade, amor, conquistas e muitos anos de vida. Que Deus abençoe cada passo seu, ilumine seus caminhos e te dê forças para continuar enfrentando todos os desafios da vida.</p>
+    
+    <p>Pai, eu sei que nem sempre sou a melhor pessoa para demonstrar o que sinto e que muitas vezes posso não falar o quanto você é importante para mim. Às vezes, por causa da correria, dos problemas e das situações do dia a dia, acabamos não dizendo aquilo que realmente sentimos. Mas hoje eu quero que você saiba que eu sou muito grato por ter você como meu pai.</p>
+    
+    <p>Obrigado por tudo que você já fez e continua fazendo por mim. Obrigado pelos conselhos, pelos momentos, pela preocupação e por todas as coisas que talvez eu nem sempre perceba ou agradeça da maneira que deveria. Eu sei que ninguém é perfeito, mas cada pessoa tem sua importância na nossa vida, e você sempre será uma pessoa muito importante para mim.</p>
+    
+    <p>Ao longo da vida, você passou por muitos momentos, enfrentou dificuldades e superou desafios. Mesmo assim, continua seguindo em frente. Eu admiro sua força e espero que você nunca se esqueça do quanto é especial e importante para as pessoas que te amam.</p>
+    
+    <p>Neste novo ano da sua vida, eu desejo que você consiga realizar seus sonhos, alcançar seus objetivos e viver muitos momentos felizes. Que não falte saúde, dinheiro, tranquilidade e motivos para sorrir. Que todos os problemas fiquem menores e que os bons momentos se multipliquem cada vez mais.</p>
+    
+    <p>Espero que você aproveite muito o seu dia, porque você merece ser feliz. Que este aniversário seja apenas o começo de uma nova fase cheia de coisas boas, novas conquistas e momentos inesquecíveis.</p>
+    
+    <p>Pai, eu te desejo um feliz aniversário de todo o meu coração. Que você continue sendo essa pessoa forte e que nunca faltem motivos para você seguir em frente. Eu espero que ainda possamos viver muitos momentos juntos, conversar, rir, brigar às vezes também kkkkk, mas principalmente continuar construindo memórias.</p>
+    
+    <p>Eu te amo, pai! ❤️ Mesmo que eu nem sempre diga isso, você é uma pessoa muito importante na minha vida. Obrigado por ser meu pai e por tudo que você já fez por mim. Que Deus te abençoe hoje e sempre, proteja você de todo mal e permita que você viva muitos e muitos anos com saúde, felicidade e paz.</p>
+    
+    <p style="text-align: center; font-weight: bold; font-size: 1.15rem; color: #1ea1ff; margin-top: 25px;">
+      Parabéns pelo seu dia, pai! 🎉🎂🥳❤️<br>
+      Feliz aniversário! Eu te amo muito! ❤️
+    </p>
+  </div>
+
+  <script>
+    function openLetter() {
+      // Executa o áudio
+      const music = document.getElementById('bgMusic');
+      if (music) {
+        music.play().catch(e => console.log("Áudio aguardando ação do usuário ou link inválido"));
+      }
+
+      // Esconde o botão e mostra a carta
+      document.getElementById('startBtn').classList.add('hidden');
+      document.getElementById('letter').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
