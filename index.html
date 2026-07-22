@@ -3,34 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dia do Mundial do Palmeiras</title>
+  <title>Feliz Aniversário, Pai!</title>
   <style>
+    /* Estilo Geral e Fundo Azul */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1ea1ff 0%, #0d7ec8 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      margin: 0;
-      background: linear-gradient(135deg, #006437 0%, #1DB954 100%);
-      text-align: center;
+      padding: 20px;
+      overflow-x: hidden;
     }
 
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      width: 90%;
-      animation: slideIn 0.5s ease-out;
+    /* ANIMAÇÃO DE CONFETE CAINDO */
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-10vh) rotateZ(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotateZ(360deg);
+        opacity: 0;
+      }
     }
 
-    @keyframes slideIn {
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #FFD700;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ANIMAÇÃO DO BOTÃO COM PULSO */
+    @keyframes pulse-button {
+      0% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      50% {
+        box-shadow: 0 4px 25px rgba(255, 215, 0, 0.5);
+      }
+      100% {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    /* ANIMAÇÃO DE ENTRADA SUAVE */
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -38,115 +70,38 @@
       }
     }
 
-    h1 {
-      color: #006437;
-      margin-bottom: 10px;
-      font-size: 28px;
-    }
-
-    .subtitle {
-      color: #666;
-      margin-bottom: 25px;
-      font-size: 14px;
-    }
-
-    button {
-      background-color: #006437; /* Verde Palmeiras */
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 15px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #004d2a;
-      transform: scale(1.05);
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    /* Esconde o vídeo no início */
-    #area-video {
-      display: none;
-      margin-top: 25px;
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
+    /* ANIMAÇÃO DE BALANÇO */
+    @keyframes swing {
+      0%, 100% {
+        transform: rotate(-2deg);
       }
-      to {
+      50% {
+        transform: rotate(2deg);
+      }
+    }
+
+    /* ANIMAÇÃO DE BRILHO */
+    @keyframes shine {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
         opacity: 1;
       }
     }
 
-    .video-wrapper {
+    /* Container Polaroid */
+    .polaroid-wrapper {
       position: relative;
-      padding-bottom: 56.25%; /* Proporção 16:9 */
-      height: 0;
-      overflow: hidden;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .polaroid {
+      background-color: #ffffff;
+      padding: 20px 20px 50px 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       border-radius: 8px;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .emoji {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="emoji">🏆⚽🟢</div>
-    <h1>Dia do Mundial do Palmeiras</h1>
-    <p class="subtitle">Clique no botão para reviver este momento histórico!</p>
-    
-    <button id="btnRevelar" onclick="mostrarVideo()">
-      Clica aqui pra ver o dia que o palmeiras ganhou o mundial
-    </button>
-
-    <div id="area-video">
-      <div class="video-wrapper">
-        <iframe 
-          id="iframeVideo" 
-          src="" 
-          title="Palmeiras Mundial" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function mostrarVideo() {
-      // 1. Esconde o botão após o clique
-      document.getElementById('btnRevelar').style.display = 'none';
-
-      // 2. Link do vídeo convertido para embed
-      const linkDoVideo = "https://www.youtube.com/embed/nLUpLtXzOHg?autoplay=1"; 
-
-      // 3. Insere a URL no iframe e exibe o container do vídeo
-      document.getElementById('iframeVideo').src = linkDoVideo;
-      document.getElementById('area-video').style.display = 'block';
-    }
-  </script>
-
-</body>
-</html>
+      width: 320px;
+      max
